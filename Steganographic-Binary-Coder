@@ -1,0 +1,44 @@
+def embed():
+    output =''
+    decoy_text = input('Enter Decoy Text: ')
+    decoy_list = list(decoy_text)
+    binary_message = (input('Input Binary Message: '))
+    b_list = list(binary_message)
+    for index, char in enumerate(decoy_list):
+        if char == '.':
+            if b_list[0] == '1':
+                new_index = index + 2
+                decoy_list.insert(new_index, ' ')
+                b_list.remove('1')
+            else:
+                b_list.remove('0')
+
+
+    output = output.join(decoy_list)
+    print(output)
+
+
+def detect():
+    input_message = input('Input message for decoding: ')
+    message_list = list(input_message)
+    binary_string = ''
+    for index, char in enumerate(message_list):
+        if index + 2 >= len(message_list):
+            break
+        if char == '.':
+            new_index = index + 2
+            if message_list[new_index] == ' ':
+                binary_string += '1'
+            else:
+                binary_string += '0'
+    print(f'Binary Detected: {binary_string}')
+
+
+
+print('Greetings!')
+print("Embed or Detect?")
+response = input('> '.lower())
+if response == 'embed':
+    embed()
+elif response == 'detect':
+    detect()
