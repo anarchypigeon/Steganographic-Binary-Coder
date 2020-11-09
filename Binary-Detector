@@ -1,0 +1,15 @@
+def detect():
+    input_message = input('Input message for decoding: ')
+    message_list = list(input_message)
+    binary_string = ''
+    for index, char in enumerate(message_list):
+        if char == '.':
+            try:
+                new_index = index + 2
+                if char[new_index] == ' ':
+                    binary_string += '1'
+                else:
+                    binary_string += '0'
+            except IndexError:
+                continue
+    print(f'Binary Detected: {binary_string}')
